@@ -12,7 +12,7 @@ var login = Vue.component("login", {
 	template: "#login"
 })
 
-var pointOfIssue = Vue.component("point-of-issue", {
+var selectPoint = Vue.component("selectPoint", {
 	data() {
 		return {
 			cities: ["Москва", "Санкт-Петербург"],
@@ -76,7 +76,7 @@ var routes = [
   { path: '/', component: home },
   { path: '/registration', component: registration },
   { path: '/login', component: login },
-  { path: '/select-point', component: pointOfIssue }
+  { path: '/select-point', component: selectPoint }
 ]
 
 var router = new VueRouter({ routes })
