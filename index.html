@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue weship2you.com</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script id="ISDEKscript" type="text/javascript" src="https://widget.cdek.ru/widget/widjet.js"></script>
+</head>
+<body>
+
+<div id="app" class="container">
+	<router-view></router-view>
+</div>
+
+<template id="home">
+	<div class="links">
+    	<router-link class="link link__button" to="/login">Войти</router-link>
+		<router-link class="link link__button" to="/registration">Регистрация</router-link>
+    </div>
+</template>
+
+<template id="registration">
+	<form class="form">
+		<input type="email" class="form__input" placeholder="E-mail" v-model="$root.user.login">
+		<input type="password" class="form__input" placeholder="Пароль" v-model="$root.user.password">
+		<input type="submit" class="form__button" value="Регистрация" @click.prevent="$root.registration">
+		<router-link class="link" to="/">На главную</router-link>
+	</form>
+</template>
+
+<template id="login">
+	<form class="form">
+		<input type="email" class="form__input" placeholder="E-mail" v-model="$root.user.login">
+		<input type="password" class="form__input" placeholder="Пароль" v-model="$root.user.password">
+		<input type="submit" class="form__button" value="Войти" @click.prevent="$root.login">
+		<router-link class="link" to="/">На главную</router-link>
+	</form>
+</template>
+
+<template id="select-point">
+	<div>
+		<form class="form">
+			<input type="text" class="form__input" v-model="country" placeholder="Введите страну">
+			<input type="text" class="form__input" v-model="city" placeholder="Введите город" :class="field">
+			<input type="submit" class="form__button" value="Выбрать пункт" @click.prevent="selectPoint">
+			<router-link class="link" to="/">На главную</router-link>
+		</form>
+		<div class="point__about" v-if="selectedPoint">
+			<div class="point__header">Посылка будет доставлена в пункт самовывоза:</div>
+			<div class="point__row">
+				<div class="point__caption">Адрес:</div>
+				<div class="point__value">{{ point.address }}</div>
+			</div>
+			<div class="point__row">
+				<div class="point__caption">Телефон поддержки:</div>
+				<div class="point__value">{{ point.phone }}</div>
+			</div>
+			<div class="point__row">
+				<div class="point__caption">Время работы</div>
+				<div class="point__value">{{ point.worktime }}</div>
+			</div>
+			<div class="point__row">
+				<div class="point__caption">Станция метро</div>
+				<div class="point__value">{{ point.metro }}</div>
+			</div>
+		</div>
+		<div id="widget-cdek" class="map"></div>
+	</div>
+</template>
+
+<script src="js/vue.min.js"></script>
+<script src="js/vue-router.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
